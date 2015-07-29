@@ -37,15 +37,17 @@ public class FieldGame extends Thread{
         while (!isGameEnd){
             try {
                 for (Snake snake:snakes){
-                    snake.move();
+                    if (!snake.isGameOver()){
+                        snake.move();
+                    }
                 }
+
                 addFieldFood();
                 if (snakes.size() > 0){
                     makeDataFieldForClient();
                     stateDataField++;
                 }
                 Thread.sleep(1000);
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -124,5 +126,24 @@ public class FieldGame extends Thread{
 
         }
         return result;
+    }
+
+    private void checkFieldSGame(){
+
+        //1 out border
+        for (Snake snake:snakes){
+            Integer[] xyHead = snake.getBody().get(0);
+            if ((xyHead[0] < 0 | xyHead[0] > width) & ((xyHead[1] < 0 | xyHead[1] > height))){
+                snake.setIsGameOver(true);
+                snake.moveBack();
+            }
+            for (Integer[] xy:foodXY){
+                if (xyHead[0] == xy[0] & xyHead[1] == xy[1]){
+                    snake.
+                }
+            }
+
+        }
+
     }
 }
