@@ -1,3 +1,5 @@
+package Server;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -10,7 +12,7 @@ public class ClientWorker  extends Thread {
 
     private Socket soket;
     private int number;
-    private Snake snake;
+    private Server.Snake snake;
 
     public ClientWorker(Socket clientSocket, int clientNumber) {
         this.soket = clientSocket;

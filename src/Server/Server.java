@@ -1,3 +1,4 @@
+package Server;
 /**
  * Created by Pomeo on 27.07.2015.
  */
@@ -6,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-class Server {
+public class Server {
 
     private static FieldGame fieldGame;
     private static Set<ClientWorker> clientWorkers = new HashSet<ClientWorker>();

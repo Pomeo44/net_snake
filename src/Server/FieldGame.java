@@ -1,4 +1,5 @@
-import javax.print.attribute.SetOfIntegerSyntax;
+package Server;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -23,7 +24,7 @@ public class FieldGame extends Thread{
     public FieldGame(int height, int width, int maxVolumeFood) {
         this.height = height;
         this.width = width;
-        this.snakes = new ArrayList<Snake>();
+        this.snakes = new ArrayList<Server.Snake>();
         this.foodXY = new HashSet<>();
         this.maxVolumeFood = maxVolumeFood;
         this.isGameEnd = false;
@@ -36,7 +37,7 @@ public class FieldGame extends Thread{
 
         while (!isGameEnd){
             try {
-                for (Snake snake:snakes){
+                for (Server.Snake snake:snakes){
                     if (!snake.isGameOver()){
                         snake.move();
                     }
@@ -63,7 +64,7 @@ public class FieldGame extends Thread{
     }
 
     public Snake getNewSnake(int number){
-        Snake snake = new Snake(number);
+        Server.Snake snake = new Server.Snake(number);
         snakes.add(snake);
         ArrayList<Integer[]> body = new ArrayList<>();
         for (int i = 0; i < 3; i++){
@@ -81,7 +82,7 @@ public class FieldGame extends Thread{
             dataFieldForClient += xy[0] + ":" + xy[1] + ";";
         }
         dataFieldForClient += "}";
-        for (Snake snake:snakes){
+        for (Server.Snake snake:snakes){
             dataFieldForClient += "[";
             ArrayList<Integer[]> bodySnake = snake.getBody();
             for (Integer[] xy:bodySnake){
@@ -116,7 +117,7 @@ public class FieldGame extends Thread{
 
     private boolean xyFree(int x, int y){
         boolean result = true;
-        for (Snake snake:snakes){
+        for (Server.Snake snake:snakes){
             ArrayList<Integer[]> bodySnake = snake.getBody();
             for (Integer[] xy:bodySnake){
                 if (x == xy[0] & y == xy[1]){
@@ -139,7 +140,7 @@ public class FieldGame extends Thread{
             }
             for (Integer[] xy:foodXY){
                 if (xyHead[0] == xy[0] & xyHead[1] == xy[1]){
-                    snake.
+                    //snake.
                 }
             }
 
