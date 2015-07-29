@@ -1,7 +1,5 @@
-package Server;
-/**
- * Created by Pomeo on 27.07.2015.
- */
+package server;
+
 import java.net.*;
 import java.util.HashSet;
 import java.util.Set;

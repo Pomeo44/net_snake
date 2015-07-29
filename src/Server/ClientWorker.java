@@ -1,23 +1,22 @@
-package Server;
+package server;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-/**
- * Created by Pomeo on 28.07.2015.
- */
 public class ClientWorker  extends Thread {
 
     private Socket soket;
     private int number;
-    private Server.Snake snake;
+    private Snake snake;
+    private boolean clientConnected;
 
     public ClientWorker(Socket clientSocket, int clientNumber) {
         this.soket = clientSocket;
         this.number = clientNumber;
         this.snake = Server.getFieldGame().getNewSnake(number);
+        this.clientConnected = true;
         start();
     }
 
@@ -25,7 +24,7 @@ public class ClientWorker  extends Thread {
         try {
             InputStream in = soket.getInputStream();
             long oldStateDataField = 0;
-            while (true){
+            while (clientConnected){
                 if (isInterrupted()){
                     break;
                 }
@@ -68,12 +67,11 @@ public class ClientWorker  extends Thread {
         OutputStream out = null;
         try {
             out = soket.getOutputStream();
-            System.out.println("Out client " + data);
+            System.out.println("Out client " + number + " " + data);
             out.write(data.getBytes());
-
         } catch (IOException e) {
-            System.out.println("ClientWorker init error updata client: " + e);
+            clientConnected = false;
+            snake.setIsGameOver(true);
         }
-
     }
 }

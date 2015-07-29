@@ -1,15 +1,13 @@
-package Server;
+package server;
 
 import java.util.ArrayList;
 
-/**
- * Created by Pomeo on 27.07.2015.
- */
 public class Snake {
 
     private int number;
     private String move;
     private ArrayList<Integer[]> body;
+    private Integer[] oldTail;
     private boolean isGameOver;
 
     Snake(int number) {
@@ -55,11 +53,12 @@ public class Snake {
     }
 
     public void addFoodInSnake(){
-
+        body.add(oldTail);
     }
 
     public void move(){
 
+        oldTail = body.get(body.size()-1).clone();
         for (int i = body.size() - 1; i > 0; i--){
             body.set(i, body.get(i-1));
         }
@@ -83,34 +82,10 @@ public class Snake {
             head[1]++;
             body.set(0, head);
         }
-
     }
 
     public void moveBack(){
-
-        /*for (int i = body.size() - 1; i > 0; i--){
-            body.set(i, body.get(i-1));
-        }
-        if (move.equals(Move.LEFT)){
-            Integer[] head = body.get(0).clone();
-            head[0]--;
-            body.set(0, head);
-        }
-        else if (move.equals(Move.RIGT)){
-            Integer[] head = body.get(0).clone();
-            head[0]++;
-            body.set(0, head);
-        }
-        else if (move.equals(Move.UP)){
-            Integer[] head = body.get(0).clone();
-            head[1]--;
-            body.set(0, head);
-        }
-        else if (move.equals(Move.DOWN)){
-            Integer[] head = body.get(0).clone();
-            head[1]++;
-            body.set(0, head);
-        }*/
-
+        body.remove(body.get(0));
+        body.add(oldTail);
     }
 }

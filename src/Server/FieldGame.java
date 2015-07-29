@@ -1,19 +1,16 @@
-package Server;
+package server;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-/**
- * Created by Pomeo on 28.07.2015.
- */
 public class FieldGame extends Thread{
 
     private int width;
     private int height;
     private ArrayList<Snake> snakes;
-    private Set<Integer[]> foodXY;
+    private Set<Integer[]> xyFoods;
     private int maxVolumeFood;
 
     private String dataFieldForClient;
@@ -24,8 +21,8 @@ public class FieldGame extends Thread{
     public FieldGame(int height, int width, int maxVolumeFood) {
         this.height = height;
         this.width = width;
-        this.snakes = new ArrayList<Server.Snake>();
-        this.foodXY = new HashSet<>();
+        this.snakes = new ArrayList<>();
+        this.xyFoods = new HashSet<Integer[]>();
         this.maxVolumeFood = maxVolumeFood;
         this.isGameEnd = false;
         this.stateDataField = 0;
@@ -34,37 +31,28 @@ public class FieldGame extends Thread{
 
     @Override
     public void run() {
-
         while (!isGameEnd){
             try {
-                for (Server.Snake snake:snakes){
+                for (Snake snake:snakes){
                     if (!snake.isGameOver()){
                         snake.move();
                     }
                 }
-
+                checkFieldSGame();
                 addFieldFood();
                 if (snakes.size() > 0){
                     makeDataFieldForClient();
                     stateDataField++;
                 }
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
     public Snake getNewSnake(int number){
-        Server.Snake snake = new Server.Snake(number);
+        Snake snake = new Snake(number);
         snakes.add(snake);
         ArrayList<Integer[]> body = new ArrayList<>();
         for (int i = 0; i < 3; i++){
@@ -78,11 +66,11 @@ public class FieldGame extends Thread{
     private void makeDataFieldForClient(){
         dataFieldForClient = "";
         dataFieldForClient += "{";
-        for (Integer[] xy:foodXY){
-            dataFieldForClient += xy[0] + ":" + xy[1] + ";";
+        for (Integer[] xyFood:xyFoods){
+            dataFieldForClient += xyFood[0] + ":" + xyFood[1] + ";";
         }
         dataFieldForClient += "}";
-        for (Server.Snake snake:snakes){
+        for (Snake snake:snakes){
             dataFieldForClient += "[";
             ArrayList<Integer[]> bodySnake = snake.getBody();
             for (Integer[] xy:bodySnake){
@@ -102,7 +90,7 @@ public class FieldGame extends Thread{
     }
 
     private void addFieldFood(){
-        if (foodXY.size() < maxVolumeFood ){
+        if (xyFoods.size() < maxVolumeFood){
             Random random = new Random();
             int x;
             int y;
@@ -111,40 +99,59 @@ public class FieldGame extends Thread{
                 y = random.nextInt(height);
             } while (!xyFree(x,y));
             Integer[] xy = {x,y};
-            foodXY.add(xy);
+            xyFoods.add(xy);
         }
     }
 
     private boolean xyFree(int x, int y){
         boolean result = true;
-        for (Server.Snake snake:snakes){
+        for (Snake snake:snakes){
             ArrayList<Integer[]> bodySnake = snake.getBody();
             for (Integer[] xy:bodySnake){
                 if (x == xy[0] & y == xy[1]){
                     result = false;
                 }
             }
-
         }
         return result;
     }
 
     private void checkFieldSGame(){
 
-        //1 out border
         for (Snake snake:snakes){
             Integer[] xyHead = snake.getBody().get(0);
-            if ((xyHead[0] < 0 | xyHead[0] > width) & ((xyHead[1] < 0 | xyHead[1] > height))){
+            //1 out border
+            if ((xyHead[0] < 0 | xyHead[0] > width) | xyHead[1] < 0 | xyHead[1] > height){
                 snake.setIsGameOver(true);
                 snake.moveBack();
             }
-            for (Integer[] xy:foodXY){
-                if (xyHead[0] == xy[0] & xyHead[1] == xy[1]){
-                    //snake.
+            //2 eat food
+            for (Integer[] xyFood:xyFoods){
+                if (xyHead[0] == xyFood[0] & xyHead[1] == xyFood[1]){
+                    snake.addFoodInSnake();
+                    xyFoods.remove(xyFood);
+                    addFieldFood();
+                    break;
                 }
             }
-
+            //3 other snake
+            /*for (Snake snakeOther:snakes){
+                for (Integer[] xyElementBody:snakeOther.getBody()) {
+                    if (xyHead.equals(xyElementBody)){
+                        continue;
+                    }
+                    if (xyHead[0] == xyElementBody[0] | xyHead[1] == xyElementBody[1]){
+                        if (snakeOther.getBody().get(0).equals(xyElementBody)){ //two snakes clashed heads
+                            snake.setIsGameOver(true);
+                            snakeOther.setIsGameOver(true);
+                        }
+                        else {
+                            snake.setIsGameOver(true);
+                            snake.moveBack();
+                        }
+                    }
+                }
+            }*/
         }
-
     }
 }

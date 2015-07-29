@@ -1,7 +1,5 @@
-package Server;
-/**
- * Created by Pomeo on 28.07.2015.
- */
+package server;
+
 public interface Move {
     static String UP = "up";
     static String DOWN = "down";
