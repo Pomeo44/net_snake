@@ -115,9 +115,12 @@ public class FieldGame extends Thread{
     private void checkFieldSGame(){
 
         for (Snake snake:snakes){
+            if (snake.isGameOver()) {
+                continue;
+            }
             Coordinates coordinatesHead = snake.getBody().getFirst();
             //1 out border
-            if ((coordinatesHead.x < 0 || coordinatesHead.x > width) | coordinatesHead.y < 0 | coordinatesHead.y > height){
+            if ((coordinatesHead.x < 0 || coordinatesHead.x > width) || coordinatesHead.y < 0 || coordinatesHead.y > height){
                 snake.setIsGameOver(true);
                 snake.moveBack();
             }
@@ -131,13 +134,13 @@ public class FieldGame extends Thread{
                 }
             }
             //3 other snake
-            /*for (Snake snakeOther:snakes){
-                for (Integer[] xyElementBody:snakeOther.getBody()) {
-                    if (xyHead.equals(xyElementBody)){
+            for (Snake snakeOther:snakes){
+                for (Coordinates coordinatesElementBody:snakeOther.getBody()) {
+                    if (coordinatesHead.equals(coordinatesElementBody)){
                         continue;
                     }
-                    if (xyHead[0] == xyElementBody[0] | xyHead[1] == xyElementBody[1]){
-                        if (snakeOther.getBody().get(0).equals(xyElementBody)){ //two snakes clashed heads
+                    if (coordinatesHead.x == coordinatesElementBody.x && coordinatesHead.y == coordinatesElementBody.y){
+                        if (snakeOther.getBody().getFirst().equals(coordinatesElementBody) && !snakeOther.isGameOver()){ //two snakes clashed heads
                             snake.setIsGameOver(true);
                             snakeOther.setIsGameOver(true);
                         }
@@ -147,7 +150,7 @@ public class FieldGame extends Thread{
                         }
                     }
                 }
-            }*/
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ public class Client {
                 if (graphicFieldGame.hasKeyEvents()) {
 
                     KeyEvent event = graphicFieldGame.getEventFromTop();
-                    switch(event.getKeyChar()) {
+                    switch(event.getKeyCode()) {
                         case KeyEvent.VK_ESCAPE:
                             send = "exit";
                             break;
@@ -41,13 +41,13 @@ public class Client {
                             send = Move.LEFT.name();
                             break;
                         case KeyEvent.VK_RIGHT:
-                            Move.RIGT.name();
+                            send = Move.RIGT.name();
                             break;
                         case KeyEvent.VK_UP:
-                            Move.UP.name();
+                            send = Move.UP.name();
                             break;
                         case KeyEvent.VK_DOWN:
-                            Move.DOWN.name();
+                            send = Move.DOWN.name();
                             break;
                         default:
                             break;

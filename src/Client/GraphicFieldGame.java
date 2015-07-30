@@ -1,6 +1,7 @@
 package client;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -22,7 +23,10 @@ public class GraphicFieldGame extends Thread
         frame.setTitle("NetSnake");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
+        frame.getGraphics();
         frame.add(myFrame);
+        //Graphics g = frame.getGraphics();
+        //g.fillOval(10 * 10, 10 * 10, 10, 10);
         frame.setVisible(true);
 
         frame.addFocusListener(new FocusListener()
@@ -61,5 +65,6 @@ public class GraphicFieldGame extends Thread
 
     public void refreshGraphicFieldGame(String data){
         this.myFrame.drow(data);
+        //this.myFrame.paintComponent(frame);
     }
 }

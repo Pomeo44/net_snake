@@ -1,6 +1,5 @@
 package server;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Snake {
@@ -61,20 +60,19 @@ public class Snake {
         Coordinates head = body.getFirst();
         oldTail = body.getLast();
         body.removeLast();
-        body.add(new Coordinates(head.x, head.y--));
 
-        /*if (move == Move.LEFT){
-            body.addFirst(new Coordinates(head.x--, head.y));
+        if (move == Move.LEFT){
+            body.addFirst(new Coordinates(head.x - 1, head.y));
         }
         else if (move == Move.RIGT){
-            body.addFirst(new Coordinates(head.x++, head.y));
+            body.addFirst(new Coordinates(head.x + 1, head.y));
         }
         else if (move == Move.UP){
-            body.add(new Coordinates(head.x, head.y--));
+            body.addFirst(new Coordinates(head.x, head.y - 1));
         }
         else if (move.equals(Move.DOWN)){
-            body.addFirst(new Coordinates(head.x, head.y++));
-        }*/
+            body.addFirst(new Coordinates(head.x, head.y + 1));
+        }
     }
 
     public void moveBack(){

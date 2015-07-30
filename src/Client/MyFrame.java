@@ -13,11 +13,13 @@ public class MyFrame extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.fillOval(100 * 10, 100 * 10, 10, 10);
     }
 
     public void drow(String data){
         Graphics g = getGraphics();
 
+        if (g == null) return;
         g.clearRect(0,0,500,500);
 
         String stringNumber = "";
