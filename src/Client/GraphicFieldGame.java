@@ -27,19 +27,6 @@ public class GraphicFieldGame extends Thread
         frame.add(myFrame);
         frame.setVisible(true);
 
-        frame.addFocusListener(new FocusListener()
-        {
-            @Override
-            public void focusGained(FocusEvent e)
-            {
-            }
-
-            @Override
-            public void focusLost(FocusEvent e)
-            {
-            }
-        });
-
         frame.addKeyListener(new KeyAdapter()
         {
             public void keyPressed(KeyEvent e)

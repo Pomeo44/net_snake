@@ -26,6 +26,7 @@ public class Client {
                     port = Integer.parseInt(args[1]);
                 }
             }
+            System.out.println("Connect to " + host + ":" + port);
             socket = new Socket(host, port);
             in = socket.getInputStream();
             out = socket.getOutputStream();

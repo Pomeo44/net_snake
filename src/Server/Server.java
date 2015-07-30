@@ -37,8 +37,9 @@ public class Server {
                     clientNumber++;
                 }
                 else {
+                    Thread.sleep(1000);
                     if (fieldGame.getIsGameEnd()){
-                        Thread.sleep(10000);
+                        Thread.sleep(3000);
                         rebootFieldGame();
                     }
                 }
