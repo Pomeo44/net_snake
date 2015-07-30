@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8056b2c3-a41e-4c28-9d47-1d0f39d5c5d4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/net_snake/client/Client.class" afterPath="$PROJECT_DIR$/out/production/net_snake/client/Client.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/net_snake/client/GraphicFieldGame$1.class" afterPath="$PROJECT_DIR$/out/production/net_snake/client/GraphicFieldGame$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/net_snake/client/GraphicFieldGame$2.class" afterPath="$PROJECT_DIR$/out/production/net_snake/client/GraphicFieldGame$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/net_snake/client/GraphicFieldGame.class" afterPath="$PROJECT_DIR$/out/production/net_snake/client/GraphicFieldGame.class" />
-      <change type="MODIFICATION" beforePath="C:\my_java\net_snake\src\client\Client.java" afterPath="$PROJECT_DIR$/src/client/Client.java" />
-      <change type="MODIFICATION" beforePath="C:\my_java\net_snake\src\server\ClientWorker.java" afterPath="$PROJECT_DIR$/src/server/ClientWorker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/net_snake/server/ClientWorker.class" afterPath="$PROJECT_DIR$/out/production/net_snake/server/ClientWorker.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/net_snake/server/FieldGame.class" afterPath="$PROJECT_DIR$/out/production/net_snake/server/FieldGame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/net_snake/server/Move.class" afterPath="$PROJECT_DIR$/out/production/net_snake/server/Move.class" />
+      <change type="MODIFICATION" beforePath="C:\my_java\net_snake\out\production\net_snake\server\Snake.class" afterPath="C:\my_java\net_snake\out\production\net_snake\server\Snake.class" />
       <change type="MODIFICATION" beforePath="C:\my_java\net_snake\src\server\Coordinates.java" afterPath="$PROJECT_DIR$/src/server/Coordinates.java" />
-      <change type="MODIFICATION" beforePath="C:\my_java\net_snake\src\client\GraphicFieldGame.java" afterPath="$PROJECT_DIR$/src/client/GraphicFieldGame.java" />
-      <change type="MODIFICATION" beforePath="C:\my_java\net_snake\src\server\Move.java" afterPath="$PROJECT_DIR$/src/server/Move.java" />
-      <change type="MODIFICATION" beforePath="C:\my_java\net_snake\src\server\Snake.java" afterPath="$PROJECT_DIR$/src/server/Snake.java" />
+      <change type="MODIFICATION" beforePath="C:\my_java\net_snake\src\server\FieldGame.java" afterPath="$PROJECT_DIR$/src/server/FieldGame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="net_snake.iws" />
@@ -38,10 +35,9 @@
         <entry file="file://$PROJECT_DIR$/src/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="29" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="29" />
+              <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#213#227#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,10 +59,10 @@
         <entry file="file://$PROJECT_DIR$/src/server/FieldGame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="45" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="45" />
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#makeDataFieldForClient#0;class#FieldGame#0" expanded="false" />
+                <element signature="method#addFieldFood#0;class#FieldGame#0" expanded="false" />
                 <element signature="method#xyFree#0;class#FieldGame#0" expanded="false" />
               </folding>
             </state>
@@ -76,13 +72,12 @@
       <file leaf-file-name="Snake.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/Snake.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22516556">
-              <caret line="8" column="21" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.33275864">
+              <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#Snake#0;class#Snake#0" expanded="false" />
                 <element signature="method#setMove#0;class#Snake#0" expanded="false" />
-                <element signature="method#move#0;class#Snake#0" expanded="false" />
-                <element signature="method#moveBack#0;class#Snake#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -92,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/src/server/Coordinates.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -102,7 +97,7 @@
         <entry file="file://$PROJECT_DIR$/src/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="78" column="17" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
+              <caret line="48" column="37" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/src/client/GraphicFieldGame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="25" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="25" />
+              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#349#350#0" expanded="true" />
@@ -130,13 +125,14 @@
         <entry file="file://$PROJECT_DIR$/src/client/MyFrame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+              <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#152#153#0" expanded="true" />
                 <element signature="e#198#199#0" expanded="true" />
                 <element signature="e#261#262#0" expanded="true" />
                 <element signature="e#300#301#0" expanded="true" />
+                <element signature="method#drow#0;class#MyFrame#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -195,12 +191,12 @@
         <option value="$PROJECT_DIR$/src/Server/Move.java" />
         <option value="$PROJECT_DIR$/src/client/MyFrame.java" />
         <option value="$PROJECT_DIR$/src/server/Server.java" />
-        <option value="$PROJECT_DIR$/src/server/FieldGame.java" />
         <option value="$PROJECT_DIR$/src/client/GraphicFieldGame.java" />
         <option value="$PROJECT_DIR$/src/server/Move.java" />
         <option value="$PROJECT_DIR$/src/client/Client.java" />
         <option value="$PROJECT_DIR$/src/server/ClientWorker.java" />
         <option value="$PROJECT_DIR$/src/server/Coordinates.java" />
+        <option value="$PROJECT_DIR$/src/server/FieldGame.java" />
         <option value="$PROJECT_DIR$/src/server/Snake.java" />
       </list>
     </option>
@@ -237,9 +233,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -292,6 +285,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -562,16 +558,15 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3343882" sideWeight="0.49479166" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3343882" sideWeight="0.49479166" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15416667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35970464" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35970464" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -582,6 +577,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -600,16 +596,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="117" />
+      <option name="time" value="127" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="body" language="JAVA" custom="" />
-        <watch expression="out" language="JAVA" custom="" />
         <watch expression="oldTail" language="JAVA" custom="" />
-        <watch expression="snake" language="JAVA" custom="" />
-        <watch expression="snake.isGameOver()" language="JAVA" custom="" />
-        <watch expression="snakes.get(0).isGameOver" language="JAVA" custom="" />
+        <watch expression="new Coordinates(head.x, head.y--)" language="JAVA" custom="" />
+        <watch expression="head.y" language="JAVA" custom="" />
+        <watch expression="head" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
@@ -621,10 +616,108 @@
     <entry file="file://$PROJECT_DIR$/src/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/ClientWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="32" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/FieldGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="method#makeDataFieldForClient#0;class#FieldGame#0" expanded="false" />
+            <element signature="method#addFieldFood#0;class#FieldGame#0" expanded="false" />
+            <element signature="method#xyFree#0;class#FieldGame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/Snake.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Snake#0;class#Snake#0" expanded="false" />
+            <element signature="method#setMove#0;class#Snake#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/Coordinates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/GraphicFieldGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+            <element signature="e#393#394#0" expanded="true" />
+            <element signature="e#1377#1378#0" expanded="true" />
+            <element signature="e#1416#1417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/MyFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#152#153#0" expanded="true" />
+            <element signature="e#198#199#0" expanded="true" />
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="method#drow#0;class#MyFrame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#213#227#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -644,10 +737,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="48" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="48" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
             <element signature="method#setMove#0;class#Snake#0" expanded="false" />
-            <element signature="method#move#0;class#Snake#0" expanded="false" />
-            <element signature="method#moveBack#0;class#Snake#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -657,8 +749,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#makeDataFieldForClient#0;class#FieldGame#0" expanded="false" />
+            <element signature="method#addFieldFood#0;class#FieldGame#0" expanded="false" />
             <element signature="method#xyFree#0;class#FieldGame#0" expanded="false" />
           </folding>
         </state>
@@ -670,7 +762,6 @@
           <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#213#227#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -690,10 +781,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
             <element signature="method#setMove#0;class#Snake#0" expanded="false" />
-            <element signature="method#move#0;class#Snake#0" expanded="false" />
-            <element signature="method#moveBack#0;class#Snake#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -703,8 +793,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#makeDataFieldForClient#0;class#FieldGame#0" expanded="false" />
+            <element signature="method#addFieldFood#0;class#FieldGame#0" expanded="false" />
             <element signature="method#xyFree#0;class#FieldGame#0" expanded="false" />
           </folding>
         </state>
@@ -716,7 +806,6 @@
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#213#227#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -725,7 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33278146">
           <caret line="1428" column="0" selection-start-line="1428" selection-start-column="0" selection-end-line="1428" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -733,58 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49753696">
           <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="29" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#213#227#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/GraphicFieldGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#349#350#0" expanded="true" />
-            <element signature="e#393#394#0" expanded="true" />
-            <element signature="e#1377#1378#0" expanded="true" />
-            <element signature="e#1416#1417#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/FieldGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="45" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#makeDataFieldForClient#0;class#FieldGame#0" expanded="false" />
-            <element signature="method#xyFree#0;class#FieldGame#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/MyFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#152#153#0" expanded="true" />
-            <element signature="e#198#199#0" expanded="true" />
-            <element signature="e#261#262#0" expanded="true" />
-            <element signature="e#300#301#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -796,12 +832,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/client/MyFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="17" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
+          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#152#153#0" expanded="true" />
+            <element signature="e#198#199#0" expanded="true" />
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="method#drow#0;class#MyFrame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/GraphicFieldGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+            <element signature="e#393#394#0" expanded="true" />
+            <element signature="e#1377#1378#0" expanded="true" />
+            <element signature="e#1416#1417#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -816,23 +871,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="37" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/Coordinates.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/FieldGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="method#makeDataFieldForClient#0;class#FieldGame#0" expanded="false" />
+            <element signature="method#addFieldFood#0;class#FieldGame#0" expanded="false" />
+            <element signature="method#xyFree#0;class#FieldGame#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/Snake.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22516556">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.33275864">
+          <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
             <element signature="method#setMove#0;class#Snake#0" expanded="false" />
-            <element signature="method#move#0;class#Snake#0" expanded="false" />
-            <element signature="method#moveBack#0;class#Snake#0" expanded="false" />
           </folding>
         </state>
       </provider>

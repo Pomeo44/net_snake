@@ -1,13 +1,14 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Snake {
 
     private int number;
     private Move move;
-    private ArrayList<Integer[]> body;
-    private Integer[] oldTail;
+    private LinkedList<Coordinates> body;
+    private Coordinates oldTail;
     private boolean isGameOver;
 
     Snake(int number) {
@@ -28,7 +29,7 @@ public class Snake {
         this.isGameOver = isGameOver;
     }
 
-    public ArrayList<Integer[]> getBody() {
+    public LinkedList<Coordinates> getBody() {
         return body;
     }
 
@@ -48,7 +49,7 @@ public class Snake {
         this.move = move;
     }
 
-    public void setBody(ArrayList<Integer[]> body) {
+    public void setBody(LinkedList<Coordinates> body) {
         this.body = body;
     }
 
@@ -57,35 +58,27 @@ public class Snake {
     }
 
     public void move(){
+        Coordinates head = body.getFirst();
+        oldTail = body.getLast();
+        body.removeLast();
+        body.add(new Coordinates(head.x, head.y--));
 
-        oldTail = body.get(body.size()-1).clone();
-        for (int i = body.size() - 1; i > 0; i--){
-            body.set(i, body.get(i-1));
+        /*if (move == Move.LEFT){
+            body.addFirst(new Coordinates(head.x--, head.y));
         }
-        if (move.equals(Move.LEFT)){
-            Integer[] head = body.get(0).clone();
-            head[0]--;
-            body.set(0, head);
+        else if (move == Move.RIGT){
+            body.addFirst(new Coordinates(head.x++, head.y));
         }
-        else if (move.equals(Move.RIGT)){
-            Integer[] head = body.get(0).clone();
-            head[0]++;
-            body.set(0, head);
-        }
-        else if (move.equals(Move.UP)){
-            Integer[] head = body.get(0).clone();
-            head[1]--;
-            body.set(0, head);
+        else if (move == Move.UP){
+            body.add(new Coordinates(head.x, head.y--));
         }
         else if (move.equals(Move.DOWN)){
-            Integer[] head = body.get(0).clone();
-            head[1]++;
-            body.set(0, head);
-        }
+            body.addFirst(new Coordinates(head.x, head.y++));
+        }*/
     }
 
     public void moveBack(){
-        body.remove(body.get(0));
-        body.add(oldTail);
+        body.removeFirst();
+        body.addLast(oldTail);
     }
 }

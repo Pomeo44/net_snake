@@ -1,16 +1,13 @@
 package server;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class FieldGame extends Thread{
 
     private int width;
     private int height;
     private ArrayList<Snake> snakes;
-    private Set<Integer[]> xyFoods;
+    private Set<Coordinates> coordinatesFoods;
     private int maxVolumeFood;
 
     private String dataFieldForClient;
@@ -22,7 +19,7 @@ public class FieldGame extends Thread{
         this.height = height;
         this.width = width;
         this.snakes = new ArrayList<>();
-        this.xyFoods = new HashSet<Integer[]>();
+        this.coordinatesFoods = new HashSet<>();
         this.maxVolumeFood = maxVolumeFood;
         this.isGameEnd = false;
         this.stateDataField = 0;
@@ -54,10 +51,10 @@ public class FieldGame extends Thread{
     public Snake getNewSnake(int number){
         Snake snake = new Snake(number);
         snakes.add(snake);
-        ArrayList<Integer[]> body = new ArrayList<>();
+        LinkedList<Coordinates> body = new LinkedList<>();
         for (int i = 0; i < 3; i++){
-            Integer[] xy = {width/2, height/2 + i};
-            body.add(xy);
+            Coordinates coordinates = new Coordinates(width/2, height/2 + i);
+            body.addLast(coordinates);
         }
         snake.setBody(body);
         return snake;
@@ -66,15 +63,15 @@ public class FieldGame extends Thread{
     private void makeDataFieldForClient(){
         dataFieldForClient = "";
         dataFieldForClient += "{";
-        for (Integer[] xyFood:xyFoods){
-            dataFieldForClient += xyFood[0] + ":" + xyFood[1] + ";";
+        for (Coordinates coordinatesFood:coordinatesFoods){
+            dataFieldForClient += coordinatesFood.x + ":" + coordinatesFood.y + ";";
         }
         dataFieldForClient += "}";
         for (Snake snake:snakes){
             dataFieldForClient += "[";
-            ArrayList<Integer[]> bodySnake = snake.getBody();
-            for (Integer[] xy:bodySnake){
-                dataFieldForClient += xy[0] + ":" + xy[1] + ";";
+            LinkedList<Coordinates> bodySnake = snake.getBody();
+            for (Coordinates coordinates:bodySnake){
+                dataFieldForClient += coordinates.x + ":" + coordinates.y + ";";
             }
             dataFieldForClient += "]";
             System.out.println(dataFieldForClient);
@@ -90,7 +87,7 @@ public class FieldGame extends Thread{
     }
 
     private void addFieldFood(){
-        if (xyFoods.size() < maxVolumeFood){
+        if (coordinatesFoods.size() < maxVolumeFood){
             Random random = new Random();
             int x;
             int y;
@@ -98,17 +95,16 @@ public class FieldGame extends Thread{
                 x = random.nextInt(width);
                 y = random.nextInt(height);
             } while (!xyFree(x,y));
-            Integer[] xy = {x,y};
-            xyFoods.add(xy);
+            coordinatesFoods.add(new Coordinates(x, y));
         }
     }
 
     private boolean xyFree(int x, int y){
         boolean result = true;
         for (Snake snake:snakes){
-            ArrayList<Integer[]> bodySnake = snake.getBody();
-            for (Integer[] xy:bodySnake){
-                if (x == xy[0] & y == xy[1]){
+            LinkedList<Coordinates> bodySnake = snake.getBody();
+            for (Coordinates coordinates:bodySnake){
+                if (x == coordinates.x & y == coordinates.y){
                     result = false;
                 }
             }
@@ -119,17 +115,17 @@ public class FieldGame extends Thread{
     private void checkFieldSGame(){
 
         for (Snake snake:snakes){
-            Integer[] xyHead = snake.getBody().get(0);
+            Coordinates coordinatesHead = snake.getBody().getFirst();
             //1 out border
-            if ((xyHead[0] < 0 | xyHead[0] > width) | xyHead[1] < 0 | xyHead[1] > height){
+            if ((coordinatesHead.x < 0 || coordinatesHead.x > width) | coordinatesHead.y < 0 | coordinatesHead.y > height){
                 snake.setIsGameOver(true);
                 snake.moveBack();
             }
             //2 eat food
-            for (Integer[] xyFood:xyFoods){
-                if (xyHead[0] == xyFood[0] & xyHead[1] == xyFood[1]){
+            for (Coordinates coordinatesFood:coordinatesFoods){
+                if (coordinatesHead.x == coordinatesFood.x && coordinatesHead.y == coordinatesFood.y){
                     snake.addFoodInSnake();
-                    xyFoods.remove(xyFood);
+                    coordinatesFoods.remove(coordinatesFood);
                     addFieldFood();
                     break;
                 }
