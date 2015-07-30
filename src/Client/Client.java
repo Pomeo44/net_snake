@@ -1,56 +1,63 @@
 package client;
 
 import server.Move;
+
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.*;
 
 public class Client {
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
+        Socket socket = null;
+        InputStream in = null;
+        OutputStream out = null;
         try
         {
-            short port = 3000;
-            Socket socket = new Socket("localhost", port);
 
-            String send = "";
-            InputStream in = socket.getInputStream();
-            OutputStream out = socket.getOutputStream();
+            int port = 3000;
+            socket = new Socket("localhost", port);
+            in = socket.getInputStream();
+            out = socket.getOutputStream();
 
             GraphicFieldGame graphicFieldGame = new GraphicFieldGame();
             graphicFieldGame.start();
-            Thread.sleep(100);
 
             boolean isGameOver = false;
+            String send = "";
 
             while(!isGameOver) {
 
                 if (graphicFieldGame.hasKeyEvents()) {
 
                     KeyEvent event = graphicFieldGame.getEventFromTop();
-                    if (event.getKeyCode() == KeyEvent.VK_ESCAPE | event.getKeyCode() == KeyEvent.VK_LEFT | event.getKeyCode() == KeyEvent.VK_RIGHT
-                            | event.getKeyCode() == KeyEvent.VK_UP | event.getKeyCode() == KeyEvent.VK_DOWN){
-                        if (event.getKeyChar() == KeyEvent.VK_ESCAPE){
+                    switch(event.getKeyChar()) {
+                        case KeyEvent.VK_ESCAPE:
                             send = "exit";
-                        }
-                        else if (event.getKeyCode() == KeyEvent.VK_LEFT){
-                            send = Move.LEFT;
-                        }
-                        else if (event.getKeyCode() == KeyEvent.VK_RIGHT){
-                            send = Move.RIGT;
-                        }
-                        else if (event.getKeyCode() == KeyEvent.VK_UP){
-                            send = Move.UP;
-                        }
-                        else if (event.getKeyCode() == KeyEvent.VK_DOWN){
-                            send = Move.DOWN;
-                        }
+                            break;
+                        case KeyEvent.VK_LEFT:
+                            send = Move.LEFT.name();
+                            break;
+                        case KeyEvent.VK_RIGHT:
+                            Move.RIGT.name();
+                            break;
+                        case KeyEvent.VK_UP:
+                            Move.UP.name();
+                            break;
+                        case KeyEvent.VK_DOWN:
+                            Move.DOWN.name();
+                            break;
+                        default:
+                            break;
+                    }
+                    if (!send.isEmpty()){
                         System.out.println(send);
                         out.write(send.getBytes());
                         out.flush();
                         if (send.equals("exit")){
-                            break;
+                            isGameOver = true;
                         }
                     }
                 }
@@ -68,6 +75,11 @@ public class Client {
         }
         catch(Exception e){
             System.out.println("Client init error: "+e);
+        }
+        finally {
+            in.close();
+            out.close();
+            socket.close();
         }
     }
 }

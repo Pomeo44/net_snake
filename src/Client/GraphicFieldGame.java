@@ -1,10 +1,7 @@
 package client;
 
 import javax.swing.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -39,23 +36,12 @@ public class GraphicFieldGame extends Thread
             @Override
             public void focusLost(FocusEvent e)
             {
-                System.exit(0);
+
             }
         });
 
-        frame.addKeyListener(new KeyListener()
+        frame.addKeyListener(new KeyAdapter()
         {
-
-            public void keyTyped(KeyEvent e)
-            {
-                //do nothing
-            }
-
-            public void keyReleased(KeyEvent e)
-            {
-                //do nothing
-            }
-
             public void keyPressed(KeyEvent e)
             {
                 keyEvents.add(e);
@@ -73,9 +59,6 @@ public class GraphicFieldGame extends Thread
         return keyEvents.poll();
     }
 
-    public void close(){
-
-    }
     public void refreshGraphicFieldGame(String data){
         this.myFrame.drow(data);
     }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Snake {
 
     private int number;
-    private String move;
+    private Move move;
     private ArrayList<Integer[]> body;
     private Integer[] oldTail;
     private boolean isGameOver;
@@ -32,17 +32,17 @@ public class Snake {
         return body;
     }
 
-    public void setMove(String move) {
-        /*if (move.equals(Move.UP) & this.move.equals(Move.DOWN)){
+    public void setMove(Move move) {
+        /*if (move.equals(Move.UP) && this.move.equals(Move.DOWN)){
             return;
         }//какая то ошибка
-        if (move.equals(Move.DOWN) & this.move.equals(Move.UP)){
+        if (move.equals(Move.DOWN) && this.move.equals(Move.UP)){
             return;
         }*/
-        if (move.equals(Move.RIGT) & this.move.equals(Move.LEFT)){
+        if (move == Move.RIGT && this.move == Move.LEFT){
             return;
         }
-        if (move.equals(Move.LEFT) & this.move.equals(Move.RIGT)){
+        if (move == Move.LEFT && this.move == Move.RIGT){
             return;
         }
         this.move = move;

@@ -36,16 +36,16 @@ public class ClientWorker  extends Thread {
                     if (data.equals("exit")){
                         break;
                     }
-                    if (data.equals(Move.UP)){
+                    if (data.equals(Move.UP.name())){
                         snake.setMove(Move.UP);
                     }
-                    else if (data.equals(Move.DOWN)){
+                    else if (data.equals(Move.DOWN.name())){
                         snake.setMove(Move.DOWN);
                     }
-                    else if (data.equals(Move.RIGT)){
+                    else if (data.equals(Move.RIGT.name())){
                         snake.setMove(Move.RIGT);
                     }
-                    else if (data.equals(Move.LEFT)){
+                    else if (data.equals(Move.LEFT.name())){
                         snake.setMove(Move.LEFT);
                     }
                 }
@@ -59,19 +59,15 @@ public class ClientWorker  extends Thread {
         }
         catch (IOException e) {
             System.out.println("ClientWorker init error: " + e);
+            clientConnected = false;
+            snake.setIsGameOver(true);
         }
 
     }
 
-    private void updataGraphicFieldGame(String data){
+    private void updataGraphicFieldGame(String data) throws IOException {
         OutputStream out = null;
-        try {
-            out = soket.getOutputStream();
-            System.out.println("Out client " + number + " " + data);
-            out.write(data.getBytes());
-        } catch (IOException e) {
-            clientConnected = false;
-            snake.setIsGameOver(true);
-        }
+        out = soket.getOutputStream();
+        out.write(data.getBytes());
     }
 }
