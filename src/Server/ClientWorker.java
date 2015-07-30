@@ -49,9 +49,10 @@ public class ClientWorker  extends Thread {
                         snake.setMove(Move.LEFT);
                     }
                 }
-                if (oldStateDataField != Server.getFieldGame().getStateDataField()){
+                long currentServerStateDataField = Server.getFieldGame().getStateDataField();
+                if (oldStateDataField != currentServerStateDataField){
                     updataGraphicFieldGame(Server.getFieldGame().getDataFieldForClient());
-                    oldStateDataField = Server.getFieldGame().getStateDataField();
+                    oldStateDataField = currentServerStateDataField;
                 }
             }
             in.close();

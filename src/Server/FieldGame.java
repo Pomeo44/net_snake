@@ -78,6 +78,7 @@ public class FieldGame extends Thread{
     }
 
     public Snake getNewSnake(int number){
+        //данный метод помести в этот класс, чтобы при возможности, можно было реализовать появление змеи в любом месте поля
         Snake snake = new Snake(number);
         snakes.add(snake);
         LinkedList<Coordinates> body = new LinkedList<>();
@@ -133,7 +134,7 @@ public class FieldGame extends Thread{
         for (Snake snake:snakes){
             LinkedList<Coordinates> bodySnake = snake.getBody();
             for (Coordinates coordinates:bodySnake){
-                if (x == coordinates.x & y == coordinates.y){
+                if (x == coordinates.x && y == coordinates.y){
                     result = false;
                 }
             }
@@ -176,6 +177,7 @@ public class FieldGame extends Thread{
                         else {
                             snake.setIsGameOver(true);
                             snake.moveBack();
+                            break;
                         }
                     }
                 }
