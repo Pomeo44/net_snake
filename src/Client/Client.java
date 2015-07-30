@@ -16,9 +16,17 @@ public class Client {
         OutputStream out = null;
         try
         {
-
+            String host = "localhost";
             int port = 3000;
-            socket = new Socket("localhost", port);
+            if (args.length == 2) {
+                if (!args[0].isEmpty()) {
+                    host = args[0];
+                }
+                if (!args[1].isEmpty()) {
+                    port = Integer.parseInt(args[1]);
+                }
+            }
+            socket = new Socket(host, port);
             in = socket.getInputStream();
             out = socket.getOutputStream();
 
@@ -73,13 +81,16 @@ public class Client {
             out.close();
             socket.close();
         }
+        catch (ConnectException e){
+            System.out.println("Client not connect to server: "+e);
+        }
         catch(Exception e){
             System.out.println("Client init error: "+e);
         }
         finally {
-            in.close();
-            out.close();
-            socket.close();
+            if (in != null) in.close();
+            if (out != null) out.close();
+            if (socket != null) socket.close();
         }
     }
 }

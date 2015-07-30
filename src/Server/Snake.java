@@ -9,11 +9,13 @@ public class Snake {
     private LinkedList<Coordinates> body;
     private Coordinates oldTail;
     private boolean isGameOver;
+    private boolean snakeWin;
 
     Snake(int number) {
         this.number = number;
         this.move = Move.UP;
         this.isGameOver = false;
+        this.snakeWin = false;
     }
 
     public int getNumber() {
@@ -28,17 +30,25 @@ public class Snake {
         this.isGameOver = isGameOver;
     }
 
+    public boolean isSnakeWin() {
+        return snakeWin;
+    }
+
+    public void setSnakeWin(boolean snakeWin) {
+        this.snakeWin = snakeWin;
+    }
+
     public LinkedList<Coordinates> getBody() {
         return body;
     }
 
     public void setMove(Move move) {
-        /*if (move.equals(Move.UP) && this.move.equals(Move.DOWN)){
+        if (move == Move.UP && this.move == Move.DOWN){
             return;
-        }//какая то ошибка
-        if (move.equals(Move.DOWN) && this.move.equals(Move.UP)){
+        }
+        if (move == Move.DOWN && this.move == Move.UP){
             return;
-        }*/
+        }
         if (move == Move.RIGT && this.move == Move.LEFT){
             return;
         }

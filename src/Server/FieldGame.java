@@ -9,17 +9,19 @@ public class FieldGame extends Thread{
     private ArrayList<Snake> snakes;
     private Set<Coordinates> coordinatesFoods;
     private int maxVolumeFood;
+    private int maxVolumeGamer;
 
     private String dataFieldForClient;
     private long stateDataField;
 
     private boolean isGameEnd;
 
-    public FieldGame(int height, int width, int maxVolumeFood) {
+    public FieldGame(int height, int width, int maxVolumeGamer, int maxVolumeFood) {
         this.height = height;
         this.width = width;
         this.snakes = new ArrayList<>();
         this.coordinatesFoods = new HashSet<>();
+        this.maxVolumeGamer = maxVolumeGamer;
         this.maxVolumeFood = maxVolumeFood;
         this.isGameEnd = false;
         this.stateDataField = 0;
@@ -41,11 +43,38 @@ public class FieldGame extends Thread{
                     makeDataFieldForClient();
                     stateDataField++;
                 }
+                isGameEnd = isGameEnd();
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        woWin();
+        makeDataFieldForClient();
+        stateDataField++;
+   }
+
+    private boolean isGameEnd(){
+        boolean result = true;
+        if (snakes.size() == maxVolumeGamer){
+            for (Snake snake:snakes){
+                if (!snake.isGameOver()){
+                    result = false;
+                }
+            }
+        }
+        else {
+            result = false;
+        }
+        return result;
+    }
+
+    public boolean getIsGameEnd(){
+        return isGameEnd;
+    }
+
+    public int getMaxVolumeGamer() {
+        return maxVolumeGamer;
     }
 
     public Snake getNewSnake(int number){
@@ -152,5 +181,17 @@ public class FieldGame extends Thread{
                 }
             }
         }
+    }
+
+    private void woWin(){
+        int maxEtFood = 0;
+        Snake winSnake = null;
+        for (Snake snake:snakes){
+            if (snake.getBody().size() > maxEtFood){
+                maxEtFood = snake.getBody().size();
+                winSnake = snake;
+            }
+        }
+        winSnake.setSnakeWin(true);
     }
 }

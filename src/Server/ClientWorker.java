@@ -62,12 +62,24 @@ public class ClientWorker  extends Thread {
             clientConnected = false;
             snake.setIsGameOver(true);
         }
-
     }
 
     private void updataGraphicFieldGame(String data) throws IOException {
         OutputStream out = null;
         out = soket.getOutputStream();
-        out.write(data.getBytes());
+        String stateGameAndGamer = "";
+        if (Server.getFieldGame().getIsGameEnd()){
+            stateGameAndGamer += "-";
+            if (snake.isSnakeWin()){
+                stateGameAndGamer += "+";
+            }
+            else {
+                stateGameAndGamer += "-";
+            }
+        }
+        else {
+            stateGameAndGamer += "+-";
+        }
+        out.write((stateGameAndGamer + data).getBytes());
     }
 }

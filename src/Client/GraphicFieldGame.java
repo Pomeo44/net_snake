@@ -22,11 +22,9 @@ public class GraphicFieldGame extends Thread
         frame = new JFrame("KeyPress");
         frame.setTitle("NetSnake");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
+        frame.setSize(420, 500);
         frame.getGraphics();
         frame.add(myFrame);
-        //Graphics g = frame.getGraphics();
-        //g.fillOval(10 * 10, 10 * 10, 10, 10);
         frame.setVisible(true);
 
         frame.addFocusListener(new FocusListener()
@@ -34,13 +32,11 @@ public class GraphicFieldGame extends Thread
             @Override
             public void focusGained(FocusEvent e)
             {
-                //do nothing
             }
 
             @Override
             public void focusLost(FocusEvent e)
             {
-
             }
         });
 
@@ -65,6 +61,5 @@ public class GraphicFieldGame extends Thread
 
     public void refreshGraphicFieldGame(String data){
         this.myFrame.drow(data);
-        //this.myFrame.paintComponent(frame);
     }
 }

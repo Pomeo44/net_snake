@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/client/GraphicFieldGame.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/client/MyFrame.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/ClientWorker.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/server/FieldGame.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/server/Server.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/server/Snake.java" charset="UTF-8" />
