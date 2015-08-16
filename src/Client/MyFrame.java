@@ -37,7 +37,7 @@ public class MyFrame extends JPanel {
                 g.drawString("You Win!!!", 10, 450);
             }
             else {
-                g.drawString("You not win.", 10, 450);
+                g.drawString("You lose!", 10, 450);
             }
         }
         data = data.substring(2);

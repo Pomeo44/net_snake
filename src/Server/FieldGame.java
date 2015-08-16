@@ -19,8 +19,8 @@ public class FieldGame extends Thread{
     public FieldGame(int height, int width, int maxVolumeGamer, int maxVolumeFood) {
         this.height = height;
         this.width = width;
-        this.snakes = new ArrayList<>();
-        this.coordinatesFoods = new HashSet<>();
+        this.snakes = new ArrayList<Snake>();
+        this.coordinatesFoods = new HashSet<Coordinates>();
         this.maxVolumeGamer = maxVolumeGamer;
         this.maxVolumeFood = maxVolumeFood;
         this.isGameEnd = false;
@@ -81,7 +81,7 @@ public class FieldGame extends Thread{
         //данный метод помести в этот класс, чтобы при возможности, можно было реализовать появление змеи в любом месте поля
         Snake snake = new Snake(number);
         snakes.add(snake);
-        LinkedList<Coordinates> body = new LinkedList<>();
+        LinkedList<Coordinates> body = new LinkedList<Coordinates>();
         for (int i = 0; i < 3; i++){
             Coordinates coordinates = new Coordinates(width/2, height/2 + i);
             body.addLast(coordinates);

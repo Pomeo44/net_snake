@@ -3,84 +3,81 @@ package server;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.SocketChannel;
 
-public class ClientWorker  extends Thread {
+public class ClientWorker {
 
-    private Socket soket;
+    private SocketChannel clientSocket;
     private int number;
     private Snake snake;
     private boolean clientConnected;
+    private String request;
+    long oldStateDataField = 0;
+    ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
-    public ClientWorker(Socket clientSocket, int clientNumber) {
-        this.soket = clientSocket;
+    public ClientWorker(SocketChannel clientSocket, int clientNumber) {
+        this.clientSocket = clientSocket;
         this.number = clientNumber;
         this.snake = Server.getFieldGame().getNewSnake(number);
         this.clientConnected = true;
-        start();
     }
 
-    public void run() {
+    public void read(SelectionKey key) throws IOException {
         try {
-            InputStream in = soket.getInputStream();
-            long oldStateDataField = 0;
-            while (clientConnected){
-                if (isInterrupted()){
-                    break;
+            if (clientSocket.read(byteBuffer) == -1){
+                String data = new String(byteBuffer.array());
+                System.out.println("ClientWorker " + number + " get date:" + data);
+                if (data.equals(Command.EXIT.name())){
+
+                } else if (data.equals(Command.MOVE_UP.name())){
+                    snake.setCommand(Command.MOVE_UP);
                 }
-                if (in.available() > 0){
-                    byte[] bytes = new byte[in.available()];
-                    in.read(bytes);
-                    String data = new String(bytes);
-                    System.out.println("ClientWorker " + number + " get date:" + data);
-                    if (data.equals("exit")){
-                        break;
-                    }
-                    if (data.equals(Move.UP.name())){
-                        snake.setMove(Move.UP);
-                    }
-                    else if (data.equals(Move.DOWN.name())){
-                        snake.setMove(Move.DOWN);
-                    }
-                    else if (data.equals(Move.RIGT.name())){
-                        snake.setMove(Move.RIGT);
-                    }
-                    else if (data.equals(Move.LEFT.name())){
-                        snake.setMove(Move.LEFT);
-                    }
+                else if (data.equals(Command.MOVE_DOWN.name())){
+                    snake.setCommand(Command.MOVE_DOWN);
                 }
-                long currentServerStateDataField = Server.getFieldGame().getStateDataField();
-                if (oldStateDataField != currentServerStateDataField){
-                    updataGraphicFieldGame(Server.getFieldGame().getDataFieldForClient());
-                    oldStateDataField = currentServerStateDataField;
+                else if (data.equals(Command.MOVE_RIGHT.name())){
+                    snake.setCommand(Command.MOVE_RIGHT);
+                }
+                else if (data.equals(Command.MOVE_LEFT.name())){
+                    snake.setCommand(Command.MOVE_LEFT);
                 }
             }
-            in.close();
-            soket.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("ClientWorker init error: " + e);
-            clientConnected = false;
+            clientSocket.close();
             snake.setIsGameOver(true);
         }
     }
 
-    private void updataGraphicFieldGame(String data) throws IOException {
-        OutputStream out = null;
-        out = soket.getOutputStream();
-        String stateGameAndGamer = "";
-        if (Server.getFieldGame().getIsGameEnd()){
-            stateGameAndGamer += "-";
-            if (snake.isSnakeWin()){
-                stateGameAndGamer += "+";
+    public void write(SelectionKey key) throws IOException {
+        try {
+            long currentServerStateDataField = Server.getFieldGame().getStateDataField();
+            if (oldStateDataField != currentServerStateDataField) {
+
+                String data = Server.getFieldGame().getDataFieldForClient();
+                String stateGameAndGamer = "";
+                if (Server.getFieldGame().getIsGameEnd()) {
+                    stateGameAndGamer += "-";
+                    if (snake.isSnakeWin()) {
+                        stateGameAndGamer += "+";
+                    } else {
+                        stateGameAndGamer += "-";
+                    }
+                } else {
+                    stateGameAndGamer += "+-";
+                }
+                byteBuffer.put((stateGameAndGamer + data).getBytes());
+                clientSocket.write(byteBuffer);
+                oldStateDataField = currentServerStateDataField;
             }
-            else {
-                stateGameAndGamer += "-";
-            }
+        } catch (IOException e) {
+            System.out.println("ClientWorker init error: " + e);
+            clientSocket.close();
+            snake.setIsGameOver(true);
         }
-        else {
-            stateGameAndGamer += "+-";
-        }
-        out.write((stateGameAndGamer + data).getBytes());
+
+
     }
 }

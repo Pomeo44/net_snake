@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class Snake {
 
     private int number;
-    private Move move;
+    private Command command;
     private LinkedList<Coordinates> body;
     private Coordinates oldTail;
     private boolean isGameOver;
@@ -13,7 +13,7 @@ public class Snake {
 
     Snake(int number) {
         this.number = number;
-        this.move = Move.UP;
+        this.command = Command.MOVE_UP;
         this.isGameOver = false;
         this.snakeWin = false;
     }
@@ -42,20 +42,20 @@ public class Snake {
         return body;
     }
 
-    public void setMove(Move move) {
-        if (move == Move.UP && this.move == Move.DOWN){
+    public void setCommand(Command command) {
+        if (command == Command.MOVE_UP && this.command == Command.MOVE_DOWN){
             return;
         }
-        if (move == Move.DOWN && this.move == Move.UP){
+        if (command == Command.MOVE_DOWN && this.command == Command.MOVE_UP){
             return;
         }
-        if (move == Move.RIGT && this.move == Move.LEFT){
+        if (command == Command.MOVE_RIGHT && this.command == Command.MOVE_LEFT){
             return;
         }
-        if (move == Move.LEFT && this.move == Move.RIGT){
+        if (command == Command.MOVE_LEFT && this.command == Command.MOVE_RIGHT){
             return;
         }
-        this.move = move;
+        this.command = command;
     }
 
     public void setBody(LinkedList<Coordinates> body) {
@@ -71,16 +71,16 @@ public class Snake {
         oldTail = body.getLast();
         body.removeLast();
 
-        if (move == Move.LEFT){
+        if (command == Command.MOVE_LEFT){
             body.addFirst(new Coordinates(head.x - 1, head.y));
         }
-        else if (move == Move.RIGT){
+        else if (command == Command.MOVE_RIGHT){
             body.addFirst(new Coordinates(head.x + 1, head.y));
         }
-        else if (move == Move.UP){
+        else if (command == Command.MOVE_UP){
             body.addFirst(new Coordinates(head.x, head.y - 1));
         }
-        else if (move.equals(Move.DOWN)){
+        else if (command.equals(Command.MOVE_DOWN)){
             body.addFirst(new Coordinates(head.x, head.y + 1));
         }
     }

@@ -1,6 +1,6 @@
 package client;
 
-import server.Move;
+import server.Command;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -47,16 +47,16 @@ public class Client {
                             send = "exit";
                             break;
                         case KeyEvent.VK_LEFT:
-                            send = Move.LEFT.name();
+                            send = Command.MOVE_LEFT.name();
                             break;
                         case KeyEvent.VK_RIGHT:
-                            send = Move.RIGT.name();
+                            send = Command.MOVE_RIGHT.name();
                             break;
                         case KeyEvent.VK_UP:
-                            send = Move.UP.name();
+                            send = Command.MOVE_UP.name();
                             break;
                         case KeyEvent.VK_DOWN:
-                            send = Move.DOWN.name();
+                            send = Command.MOVE_DOWN.name();
                             break;
                         default:
                             break;
