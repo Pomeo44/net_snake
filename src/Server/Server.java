@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 public class Server {
 
     private static FieldGame fieldGame;
-    private static Set<ClientWorker> clientWorkers = new HashSet();
+    private Set<ClientWorker> clientWorkers = new HashSet();
     private Selector clientSelector;
 
     public void run(int port, int threads) throws IOException, InterruptedException {
@@ -37,7 +37,7 @@ public class Server {
             while (clientSelector.select(50) == 0);
             Set<SelectionKey> readySet = clientSelector.selectedKeys();
             for (Iterator<SelectionKey> iterator = readySet.iterator(); iterator.hasNext();){
-                SelectionKey key = iterator.next();
+                final SelectionKey key = iterator.next();
                 iterator.remove();
                 if (key.isAcceptable() || clientWorkers.size() < fieldGame.getMaxVolumeGamer()){
                     acceptClient(serverSocketChannel, clientNumber);
@@ -56,8 +56,8 @@ public class Server {
                         }
                     });
                 }
-                if (clientWorkers.size() < fieldGame.getMaxVolumeGamer()){
-                    Thread.sleep(1000);
+                if (clientWorkers.size() == fieldGame.getMaxVolumeGamer() - 1){
+                    //Thread.sleep(1000);
                     if (fieldGame.getIsGameEnd()){
                         Thread.sleep(3000);
                         rebootFieldGame(clientSelector);
@@ -101,7 +101,7 @@ public class Server {
         return fieldGame;
     }
 
-    private static void rebootFieldGame(Selector clientSelector){
+    private void rebootFieldGame(Selector clientSelector){
         Set<SelectionKey> readySet = clientSelector.selectedKeys();
         for (Iterator<SelectionKey> iterator = readySet.iterator(); iterator.hasNext();){
             SelectionKey key = iterator.next();

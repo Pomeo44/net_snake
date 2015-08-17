@@ -27,6 +27,7 @@ public class ClientWorker {
     public void read(SelectionKey key) throws IOException {
         try {
             if (clientSocket.read(byteBuffer) == -1){
+                byteBuffer.flip();
                 String data = new String(byteBuffer.array());
                 System.out.println("ClientWorker " + number + " get date:" + data);
                 if (data.equals(Command.EXIT.name())){
@@ -43,6 +44,7 @@ public class ClientWorker {
                 else if (data.equals(Command.MOVE_LEFT.name())){
                     snake.setCommand(Command.MOVE_LEFT);
                 }
+                byteBuffer.clear();
             }
         } catch (IOException e) {
             System.out.println("ClientWorker init error: " + e);
@@ -68,8 +70,10 @@ public class ClientWorker {
                 } else {
                     stateGameAndGamer += "+-";
                 }
+                byteBuffer.flip();
                 byteBuffer.put((stateGameAndGamer + data).getBytes());
                 clientSocket.write(byteBuffer);
+                byteBuffer.clear();
                 oldStateDataField = currentServerStateDataField;
             }
         } catch (IOException e) {
