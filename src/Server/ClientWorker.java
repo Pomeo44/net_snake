@@ -1,8 +1,6 @@
 package server;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
@@ -15,7 +13,7 @@ public class ClientWorker {
     private boolean clientConnected;
     private String request;
     long oldStateDataField = 0;
-    ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+    ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
 
     public ClientWorker(SocketChannel clientSocket, int clientNumber) {
         this.clientSocket = clientSocket;
@@ -45,6 +43,7 @@ public class ClientWorker {
                     snake.setCommand(Command.MOVE_LEFT);
                 }
                 byteBuffer.clear();
+                key.interestOps(SelectionKey.OP_WRITE);
             }
         } catch (IOException e) {
             System.out.println("ClientWorker init error: " + e);
@@ -70,11 +69,15 @@ public class ClientWorker {
                 } else {
                     stateGameAndGamer += "+-";
                 }
-                byteBuffer.flip();
-                byteBuffer.put((stateGameAndGamer + data).getBytes());
-                clientSocket.write(byteBuffer);
-                byteBuffer.clear();
+                //byteBuffer.flip();
+                byte[] bytes = (stateGameAndGamer + data).getBytes();
+                ByteBuffer buffer = ByteBuffer.wrap(bytes);
+                //byteBuffer.put();
+                clientSocket.write(buffer);
+                //byteBuffer.clear();
                 oldStateDataField = currentServerStateDataField;
+                key.interestOps(SelectionKey.OP_READ);
+
             }
         } catch (IOException e) {
             System.out.println("ClientWorker init error: " + e);

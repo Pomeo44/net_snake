@@ -9,8 +9,6 @@ import java.nio.channels.SocketChannel;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class Server {
 
@@ -23,38 +21,28 @@ public class Server {
         clientSelector = Selector.open();
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         serverSocketChannel.configureBlocking(false);
-        InetSocketAddress socketAddress = new InetSocketAddress(InetAddress.getLocalHost(), port);
+        //InetSocketAddress socketAddress = new InetSocketAddress(InetAddress.getLocalHost(), port);
+        InetSocketAddress socketAddress = new InetSocketAddress("localhost", port);
         serverSocketChannel.socket().bind(socketAddress);
         serverSocketChannel.register(clientSelector, SelectionKey.OP_ACCEPT);
 
-        Executor executor = Executors.newFixedThreadPool(0);
-
         System.out.println("Server is started");
         int clientNumber = 0;
-        fieldGame = new FieldGame(40, 40, 2, 3);
+        fieldGame = new FieldGame(40, 40, 3, 3);
         System.out.println("Wait connect...");
         while(true){
-            while (clientSelector.select(50) == 0);
+            //while (clientSelector.select(50) == 0);
+            clientSelector.select();
             Set<SelectionKey> readySet = clientSelector.selectedKeys();
             for (Iterator<SelectionKey> iterator = readySet.iterator(); iterator.hasNext();){
                 final SelectionKey key = iterator.next();
                 iterator.remove();
-                if (key.isAcceptable() || clientWorkers.size() < fieldGame.getMaxVolumeGamer()){
+                if (key.isAcceptable() && clientWorkers.size() < fieldGame.getMaxVolumeGamer()){
                     acceptClient(serverSocketChannel, clientNumber);
-                    clientNumber++;
-                    System.out.println("Wait connect...");
                 }
-                else {
-                    key.interestOps(0);
-                    executor.execute(new Runnable() {
-                        public void run() {
-                            try {
-                                handlerClient(key);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
+                else if (key.isReadable() || key.isWritable()) {
+                    //key.interestOps(0);
+                    handlerClient(key);
                 }
                 if (clientWorkers.size() == fieldGame.getMaxVolumeGamer() - 1){
                     //Thread.sleep(1000);
@@ -85,6 +73,8 @@ public class Server {
         clientWorkers.add(clientWorker);
         key.attach(clientWorker);
         System.out.println("New ClientWorker creat");
+        System.out.println("Wait connect...");
+        clientNumber++;
     }
 
     void handlerClient(SelectionKey key) throws IOException {
@@ -108,6 +98,6 @@ public class Server {
             key.cancel();
         }
         clientWorkers.clear();
-        fieldGame = new FieldGame(40, 40, 2, 3);
+        fieldGame = new FieldGame(40, 40, 3, 3);
     }
 }
